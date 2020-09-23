@@ -9,29 +9,41 @@ var tasksToDoEl = document.querySelector("#tasks-to-do");//grandparent <ul>
 //    tasksToDoEl.appendChild(taskItemEl);
 //})
 
-var createTaskHandler = function(event) {
+var taskFormHandler = function(event) {
     
     event.preventDefault();
     var taskNameInput = document.querySelector("input[name='task-name']").value;
     var taskTypeInput = document.querySelector("select[name='task-type']").value;
-    
-    //create list item (parent node) <li>
-    var listItemEl = document.createElement("li");
-    listItemEl.className = "task-item";
-    //crate div to hold all task info (kid's info node) <div>
-    var taskInfoEl = document.createElement("div");
-    
-    //inside
-        taskInfoEl.className = "task-info";
-        taskInfoEl.innerHTML = "<h3 class='task name'>" + taskNameInput + "</h3><span class='task-type'>" + taskTypeInput + "</span>";
-        //append/add the taskInfoEl node (kid's info node) to the listInfoEL (parent item node)
-        listItemEl.appendChild(taskInfoEl);
-    
-        //add listItemEl (parent node) to the taskToDoEl (grandparent node)
-    tasksToDoEl.appendChild(listItemEl);
+
+    //package data as object
+    var taskDataObj = {
+        name: taskNameInput,
+        type: taskTypeInput 
+    }
+    //send it as an argumelt to createTaskEl
+    creatTaskEl(taskDataObj);
 }
 
-formEl.addEventListener("submit", createTaskHandler)
+var creatTaskEl = function(taskDataObj) {
+        //create list item (parent node) <li>
+        var listItemEl = document.createElement("li");
+        listItemEl.className = "task-item";
+        //crate div to hold all task info (kid's info node) <div>
+        var taskInfoEl = document.createElement("div");
+
+        
+        //inside
+            taskInfoEl.className = "task-info";
+            taskInfoEl.innerHTML = "<h3 class='task-name'>" + taskDataObj.name + "</h3><span class='task-type'>" + taskDataObj.type + "</span>";
+            //append/add the taskInfoEl node (kid's info node) to the listInfoEL (parent item node)
+            listItemEl.appendChild(taskInfoEl);
+        
+            //add listItemEl (parent node) to the taskToDoEl (grandparent node)
+        tasksToDoEl.appendChild(listItemEl);
+
+}
+
+formEl.addEventListener("submit", taskFormHandler)
 
 
 //Note:
