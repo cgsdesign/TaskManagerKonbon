@@ -1,5 +1,5 @@
-var buttonEl = document.querySelector("#save-task");
-var tasksToDoEl = document.querySelector("#tasks-to-do");
+var formEl = document.querySelector("#task-form");
+var tasksToDoEl = document.querySelector("#tasks-to-do");//grandparent <ul>
 
 
 //buttonEl.addEventListener("click", function() {
@@ -9,12 +9,31 @@ var tasksToDoEl = document.querySelector("#tasks-to-do");
 //    tasksToDoEl.appendChild(taskItemEl);
 //})
 
-var createTaskHandeler = function() {
-    var taskItemEl = document.createElement("li");
-    taskItemEl.className = "task-item";
-    taskItemEl.textContent = "new task";
-    tasksToDoEl.appendChild(taskItemEl);
-
+var createTaskHandler = function(event) {
+    
+    event.preventDefault();
+    var taskNameInput = document.querySelector("input[name='task-name']").value;
+    var taskTypeInput = document.querySelector("select[name='task-type']").value;
+    
+    //create list item (parent node) <li>
+    var listItemEl = document.createElement("li");
+    listItemEl.className = "task-item";
+    //crate div to hold all task info (kid's info node) <div>
+    var taskInfoEl = document.createElement("div");
+    
+    //inside
+        taskInfoEl.className = "task-info";
+        taskInfoEl.innerHTML = "<h3 class='task name'>" + taskNameInput + "</h3><span class='task-type'>" + taskTypeInput + "</span>";
+        //append/add the taskInfoEl node (kid's info node) to the listInfoEL (parent item node)
+        listItemEl.appendChild(taskInfoEl);
+    
+        //add listItemEl (parent node) to the taskToDoEl (grandparent node)
+    tasksToDoEl.appendChild(listItemEl);
 }
 
-buttonEl.addEventListener("click", createTaskHandeler)
+formEl.addEventListener("submit", createTaskHandler)
+
+
+//Note:
+// innerHTML means read as HTML - this alows for markips
+//textContent means reed as block of text - this alows for now inline markups all characters will render as a block of text
