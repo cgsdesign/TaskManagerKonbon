@@ -16,6 +16,7 @@
         </div>
         <div class="form-group">
             <select name="task-type" class="select-dropdown">
+                <option value="" disable selected> Pick Task Type</option>
                 <option value="Contract">Contract</option>
                 <option value="Business">Business</option>
                 <option value="Class">Class</option>
@@ -27,12 +28,29 @@
 </header>
 
 <main class="page-content">
+    <!-- Tasks To Do -->
     <section class="task-list-wrapper">
         <h2 class="list-title">Tasks To Do</h2>
         <ul id="tasks-to-do" class="task-list">
-        
+            <!--li filled by JS-->
         </ul>
-        </section>
+    </section>
+
+    <!-- Tasks in Progress -->
+    <section class="task-list-wrapper">
+        <h2 class="list-title">Tasks In Progress</h2>
+        <ul id="tasks-in-progress" class="task-list">
+            <!--li filled by JS-->
+        </ul>
+    </section>
+
+    <!-- Tasks Completed-->
+    <section class="task-list-wrapper">
+        <h2 class="list-title">Tasks Completed</h2>
+        <ul id="tasks-completed" class="task-list">
+            <!--li filled by JS-->
+        </ul>
+    </section>
 </main>
 
 
